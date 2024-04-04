@@ -7,7 +7,7 @@ function AddBook() {
     <div>
       <Header />
       <div className='addform'>
-        <div className='title'>AddBook</div>
+        <div className='title'>Add Book</div>
         <form>
           <div className="mb-3">
             <label htmlFor="formGroupExampleInput" className="form-label">Name</label>
