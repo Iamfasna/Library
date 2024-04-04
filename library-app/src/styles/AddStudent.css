@@ -1,0 +1,29 @@
+.addform {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.title {
+  text-align: center;
+  font-size: 40px;
+  color: #509091;
+}
+
+.mb-3 {
+  margin: 20px auto;
+  max-width: 700px;
+}
+
+.btn {
+  display: block;
+  margin: 20px auto;
+  width: 200px;
+  /* Adjust width as needed */
+  background-color: #509091;
+}

@@ -4,6 +4,7 @@ import Home from './screens/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import AdminHome from './screens/AdminHome';
 import AddBook from './screens/AddBook';
+import AddStudent from './screens/AddStudent';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/adminHome" element={<AdminHome />}></Route>
           <Route path="/addBook" element={<AddBook />}></Route>
+          <Route path="/addStudent" element={<AddStudent/>}></Route>
         </Routes>
       </Router>
 
