@@ -1,0 +1,18 @@
+.book-box {
+    width: 94%;
+    height: 50px;    
+    border-radius: 5px;
+    padding: 10px;    
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: lighter;
+    text-align: left;
+    margin: 4px auto;
+    background-color:rgba(216, 242, 243,.8) ;
+    cursor: pointer;
+    
+  }
+  .book-box:hover {
+    background-color: #eee;
+  }
