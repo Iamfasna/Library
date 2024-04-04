@@ -2,9 +2,15 @@ body{
   margin: 0;
 }
 .addform {
+
   width: 60%;
   margin: 40px auto;
   background-color: rgba(216, 242, 243, 0.8);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(215, 23, 23, 0.8);
   padding: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
