@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import '../styles/AddStudent.css';
-
+ 
 function AddStudent() {
   return (
     <div>

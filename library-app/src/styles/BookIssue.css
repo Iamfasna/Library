@@ -1,0 +1,17 @@
+.row {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+.form-control input {
+  display: inline-block;
+}
+
+.col1 {
+  display: flex;
+}
+
+button {
+  margin-left: 30px;
+  background-color: #509091;
+}
