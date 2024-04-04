@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import '../styles/AddStudent.css';
+import '../styles/AddBook.css';
 
 function AddStudent() {
   return (
@@ -15,7 +15,6 @@ function AddStudent() {
             </label>
             <input
               type="text"
-              style={{ width: '700px' }}
               className="form-control"
               id="formGroupExampleInput"
               placeholder="Name"
@@ -27,7 +26,6 @@ function AddStudent() {
             </label>
             <input
               type="text"
-              style={{ width: '700px' }}
               className="form-control"
               id="formGroupExampleInput2"
               placeholder="class"
@@ -39,7 +37,6 @@ function AddStudent() {
             </label>
             <input
               type="text"
-              style={{ width: '700px' }}
               className="form-control"
               id="formGroupExampleInput"
               placeholder="123.."
