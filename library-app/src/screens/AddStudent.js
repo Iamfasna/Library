@@ -20,16 +20,31 @@ function AddStudent() {
               placeholder="Name"
             />
           </div>
-          <div className="mb-3">
-            <label htmlFor="formGroupExampleInput2" className="form-label">
-              Class
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="formGroupExampleInput2"
-              placeholder="class"
-            />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className="mb-4">
+              <label htmlFor="formGroupExampleInput2" className="form-label">
+                Class
+              </label>
+              <input
+                type="Number"
+                className="form-control"
+                id="formGroupExampleInput2"
+                placeholder="class"
+
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="formGroupExampleInput2" className="form-label">
+                Division
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="formGroupExampleInput2"
+                placeholder="division"
+
+              />
+            </div>
           </div>
           <div className="mb-3">
             <label htmlFor="formGroupExampleInput" className="form-label">
@@ -58,8 +73,8 @@ function AddStudent() {
             ADD
           </button>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 
