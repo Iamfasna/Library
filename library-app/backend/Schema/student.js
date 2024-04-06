@@ -23,12 +23,17 @@ const studentSchema = mongoose.Schema({
     type:String,
     required:true
   },
-  issuedBook: {
-    bookName:{ type:String,
-        required:true},
-    serialNo:{type:String,
-        required:true} 
-  }
+  issuedBooks: [{
+    bookName: {
+        type: String,
+        required: true
+    },
+    serialNo: {
+        type: String,
+        required: true
+    }
+}]
+
  
 })
 
