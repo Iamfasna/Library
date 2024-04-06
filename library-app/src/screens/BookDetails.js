@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import '../styles/BookDetails.css'
+import { useParams } from 'react-router'
+ import Axios from 'axios';
+// import { Client } from 'undici-types';
 
 
 function BookDetails() {
+  const {id} = useParams();
+  const [book, setBook] = useState(null);
+  useEffect(() => {
+    Axios.get(`http://localhost:5000/boookDetails/${id}`)
+      .then(response => {
+        setBook(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching book details:', error);
+      });
+  }, [id]);
+
+
   return (
     <div><Header/>
     <div className='main'>
@@ -21,22 +37,22 @@ function BookDetails() {
     <tr>
      
       <td>Book Name</td>
-      <td>...</td>
+      <td>{book.bookName}</td>
       </tr>
     <tr>
      
       <td>Author Name</td>
-      <td>...</td>
+      <td>{book.author}</td>
       </tr>
     <tr>
      
       <td>Language</td>
-      <td>...</td>
+      <td>{book.language}</td>
       </tr>
     <tr>
      
       <td>Serial No</td>
-      <td>...</td>
+      <td>{book.serialNo}</td>
       </tr>
      
     
@@ -57,4 +73,4 @@ function BookDetails() {
   )
 }
 
-export default BookDetails
+export default BookDetails;

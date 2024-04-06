@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Axios from 'axios';
 
 
+
 function AddBook() {
   const [bookName, setName] = useState('');
   const [author, setAuthor] = useState('');
@@ -19,12 +20,9 @@ function AddBook() {
       language,
       serialNo
     })
-
-
     window.location.reload(false);
-    //navigate('/addBook');
-
   }
+
 
   return (
     <div>
@@ -34,19 +32,27 @@ function AddBook() {
         <form onSubmit={addBook}>
           <div className="mb-3">
             <label htmlFor="formGroupExampleInput" className="form-label">Name</label>
-            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Name" onChange={(e) => { setName(e.target.value) }} />
+            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Name" required onChange={(e) => { setName(e.target.value) }} />
           </div>
           <div className="mb-3">
             <label htmlFor="formGroupExampleInput2" className="form-label">Author</label>
-            <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Author" onChange={(e) => { setAuthor(e.target.value) }} />
+            <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Author" required onChange={(e) => { setAuthor(e.target.value) }} />
           </div>
-          <div className="mb-3">
+         
+          <div className=" mb-3">
             <label htmlFor="formGroupExampleInput" className="form-label">Language</label>
-            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Language" onChange={(e) => { setLang(e.target.value) }} />
+            <select className="form-select" id="selectLanguage" onChange={(e) => { setLang(e.target.value) }}>
+              <option value="">Select Language</option>
+              <option value="male">English</option>
+              <option value="female">Malayalam</option>
+              <option value="other">Arabic</option>
+              <option value="other">Sanskrit</option>
+              <option value="other">French</option>
+            </select>
           </div>
           <div className="mb-3">
             <label htmlFor="formGroupExampleInput" className="form-label">Serial No</label>
-            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="1234..." onChange={(e) => { setNo(e.target.value) }} />
+            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="1234..." required onChange={(e) => { setNo(e.target.value) }} />
           </div>
           <button type="submit" className="btn btn-primary"> Submit</button>
         </form>

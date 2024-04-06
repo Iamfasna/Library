@@ -12,10 +12,12 @@ app.use(cors());
 
 mongoose.connect('mongodb+srv://libraryproject:library123@cluster0.cgbtbyi.mongodb.net/librarydata?retryWrites=true&w=majority')
 
+//adding book
+
 app.post('/addBook', async function(req, res) {
-    if (!req.body.bookName || !req.body.author || !req.body.language || !req.body.serialNo) {
-        return res.status(400).send('All fields are required');
-    }
+    // if (!req.body.bookName || !req.body.author || !req.body.language || !req.body.serialNo) {
+    //     return res.status(400).send('All fields are required');
+    // }
     var bookData = new bookModel({
         bookName: req.body.bookName,
         author: req.body.author,
@@ -25,13 +27,40 @@ app.post('/addBook', async function(req, res) {
     try {
         await bookData.save();
         res.json();
-        
-        // // Redirect the client to the specified URL
-        // res.redirect('http://localhost:3000/addBook');
     } catch (err) {
         // Handle any errors that occur during the save operation
         console.error(err);
         res.status(500).send('Failed to add book');
+    }
+});
+
+
+//adding student
+
+//studentName,
+    //     class,
+    //     division,
+    //     admissionNo,
+    //     gender
+
+app.post('/addStudent', async function(req, res) {
+    if (!req.body.studentName || !req.body.className || !req.body.division || !req.body.admissionNo || !req.body.gender) {
+        return res.status(400).send('All fields are required');
+    }
+    var studentData = new studentModel({
+        studentName: req.body.studentName,
+        className: req.body.className,
+        division: req.body.division,
+        admissionNo: req.body.admissionNo,
+        gender: req.body.gender
+    });
+    try {
+        await studentData.save();
+        res.json();
+    } catch (err) {
+        // Handle any errors that occur during the save operation
+        console.error(err);
+        res.status(500).send('Failed to add student');
     }
 });
 
