@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
-import '../styles/AddStudent.css';
- 
+import '../styles/AddBook.css';
+
 function AddStudent() {
   return (
     <div>
@@ -15,23 +15,36 @@ function AddStudent() {
             </label>
             <input
               type="text"
-              style={{ width: '700px' }}
               className="form-control"
               id="formGroupExampleInput"
               placeholder="Name"
             />
           </div>
-          <div className="mb-3">
-            <label htmlFor="formGroupExampleInput2" className="form-label">
-              Class
-            </label>
-            <input
-              type="text"
-              style={{ width: '700px' }}
-              className="form-control"
-              id="formGroupExampleInput2"
-              placeholder="class"
-            />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className="mb-4">
+              <label htmlFor="formGroupExampleInput2" className="form-label">
+                Class
+              </label>
+              <input
+                type="Number"
+                className="form-control"
+                id="formGroupExampleInput2"
+                placeholder="class"
+
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="formGroupExampleInput2" className="form-label">
+                Division
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="formGroupExampleInput2"
+                placeholder="division"
+
+              />
+            </div>
           </div>
           <div className="mb-3">
             <label htmlFor="formGroupExampleInput" className="form-label">
@@ -39,7 +52,6 @@ function AddStudent() {
             </label>
             <input
               type="text"
-              style={{ width: '700px' }}
               className="form-control"
               id="formGroupExampleInput"
               placeholder="123.."
@@ -61,8 +73,8 @@ function AddStudent() {
             ADD
           </button>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 

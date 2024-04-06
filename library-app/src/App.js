@@ -6,6 +6,7 @@ import AdminHome from './screens/AdminHome';
 import AddBook from './screens/AddBook';
 import AddStudent from './screens/AddStudent';
 import BookIssue from './screens/BookIssue';
+import BookIssueclone from './screens/BookIssueclone';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/addBook" element={<AddBook />}></Route>
           <Route path="/addStudent" element={<AddStudent />}></Route>
           <Route path="/bookIssue" element={<BookIssue />}></Route>
+          <Route path="/bookIssueclone" element={<BookIssueclone />}></Route>
 
         </Routes>
       </Router>

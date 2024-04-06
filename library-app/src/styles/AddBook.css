@@ -1,9 +1,11 @@
+body {
+  margin: 0;
+}
+
 .addform {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(215, 23, 23, 0.8);
+  width: 60%;
+  margin: 40px auto;
+  background-color: rgba(216, 242, 243, 0.8);
   padding: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -20,10 +22,17 @@
   max-width: 700px;
 }
 
+.mb-4 {
+  margin: 20px 60px;
+
+}
+
 .btn {
   display: block;
   margin: 20px auto;
-  width: 200px;
+  width: 20%;
+  max-width: 200px;
+  min-width: 100px;
   /* Adjust width as needed */
   background-color: #509091;
 }
