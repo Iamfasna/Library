@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SubHeader from '../components/SubHeader'
 import BookList from '../components/BookList'
 import Pagination from '../components/Pagination'
 import Header from '../components/Header';
 
-function AdminHome() {
-  const books = Array.from({ length: 5000 }, (_, i) => `Book ${i + 1}`);
+function AdminHome( ) {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      const response = await fetch('http://localhost:5000/books');
+      const data = await response.json();
+      const booksWithSerialNumbers = data.map((book, index) => ({...book, serialNumber: index + 1 }));
+      setBooks(booksWithSerialNumbers);
+    };
+
+    fetchBooks();
+  }, []);
+
+ 
+
+  
+
   const pageSize = 15;
   const onPageChange = (page) => {
     console.log(`Page ${page} selected`);
