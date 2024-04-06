@@ -1,3 +1,6 @@
+body{
+  margin: 0;
+}
 .addform {
   /* position: absolute;
   top: 50%;
@@ -25,7 +28,9 @@
 .btn {
   display: block;
   margin: 20px auto;
-  width: 200px;
+  width:20%;
+  max-width: 200px;
+  min-width: 100px;
   /* Adjust width as needed */
   background-color: #509091;
 }

@@ -1,0 +1,38 @@
+body{
+    margin: 0;
+  }
+
+  .bookDetails {
+    width: 60%;
+    margin: 40px auto;
+    background-color: rgba(216, 242, 243, 0.8);
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+
+
+  .title {
+    text-align: center;
+    font-size: 40px;
+    color: #509091;
+  }
+  .tablePpty
+  {
+    margin: auto;
+  }
+
+  .issueStatus, .issueText
+  {
+    display: inline-block; 
+    margin-right: 20px;
+  }
+  span
+  {
+    margin-right: 22px;
+  }
+  .statusBtn
+  {
+    border-radius: 4px;
+  }
+  
