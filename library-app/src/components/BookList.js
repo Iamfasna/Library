@@ -1,30 +1,29 @@
-import React, { useState, useEffect } from 'react'
-import '../styles/bookList.css'
+import React from 'react';
+import { Link } from 'react-router-dom'
+import '../styles/bookList.css';
+import './Pagination.js'
 
-function BookList({ books }) {
-  const [bookList, setBookList] = useState([]);
+function BookList({ books,currentPage }) {
+ // const [bookList, setBookList] = useState([]);
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      const response = await fetch('http:localhost:5000/books');
-      const data = await response.json();
-      setBookList(data);
-    };
 
-    fetchBooks();
-  }, []);
+ let bookNo =(currentPage-1)*15;
 
   return (
-    <>
-      <div>
-        {bookList.map((book, index) => (
-          <div key={index} className='book-box'>
-            <h4>{index + 1}. {book.name}</h4>
-          </div>
-        ))}
-      </div>
-    </>
-  )
+    <div>
+      {books.map((book, index ) => (
+        
+  <div key={index} className='book-box'>
+    <Link to={`/book/${book.id}`}>
+    <h4>{++bookNo}.{book.bookName}</h4>
+    </Link>
+    
+  </div>
+))}
+
+    
+    </div>
+  );
 }
 
-export default BookList
+export default BookList;

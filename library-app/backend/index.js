@@ -34,6 +34,16 @@ app.post('/addBook', async function(req, res) {
         res.status(500).send('Failed to add book');
     }
 });
+app.get('/adminHome', async function(req, res) {
+    try {
+        const books = await bookModel.find({});
+        res.json(books);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Failed to retrieve books');
+    }
+});
+
 
 
 app.listen(5000,()=>{
