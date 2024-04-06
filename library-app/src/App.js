@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import AdminHome from './screens/AdminHome';
 import AddBook from './screens/AddBook';
 import AddStudent from './screens/AddStudent';
+import BookDetails from './screens/BookDetails';
 import BookIssue from './screens/BookIssue';
 import BookIssueclone from './screens/BookIssueclone';
 
@@ -20,6 +21,9 @@ function App() {
           <Route path="/addStudent" element={<AddStudent />}></Route>
           <Route path="/bookIssue" element={<BookIssue />}></Route>
           <Route path="/bookIssueclone" element={<BookIssueclone />}></Route>
+
+
+          <Route path="/bookDetails" element={<BookDetails />}></Route>
 
         </Routes>
       </Router>
