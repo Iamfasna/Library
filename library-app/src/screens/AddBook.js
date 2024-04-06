@@ -9,7 +9,7 @@ function AddBook() {
   const [author, setAuthor] = useState('');
   const [language, setLang] = useState('');
   const [serialNo, setNo] = useState('');
- 
+
 
   const addBook = async (e) => {
     e.preventDefault();
@@ -20,10 +20,10 @@ function AddBook() {
       serialNo
     })
 
-    
-      window.location.reload(false);
-       //navigate('/addBook');
-    
+
+    window.location.reload(false);
+    //navigate('/addBook');
+
   }
 
   return (

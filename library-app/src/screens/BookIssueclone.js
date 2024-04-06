@@ -2,10 +2,11 @@ import React from "react";
 import Header from "../components/Header";
 import '../styles/BookIssue.css';
 import BookHeader from "../components/BookHeader";
+import IssuedBooksTable from "../components/IssuedBooksTable";
 
 
 
-function BookIssue() {
+function BookIssueclone() {
   return (
     <div>
       <Header />
@@ -29,12 +30,13 @@ function BookIssue() {
       <div className="row align-items-center">
         <div className="col1">
           <input type="number" className="form-control input" placeholder="Enter Admission No" style={{ width: '300px' }} />
-          < button type="submit" className="btn">Submit</button>
+          < button type="submit" className="Btn">Submit</button>
         </div>
       </div>
       <BookHeader />
+      <IssuedBooksTable />
     </div >
   );
 }
 
-export default BookIssue;
+export default BookIssueclone;
