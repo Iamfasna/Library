@@ -15,9 +15,9 @@ mongoose.connect('mongodb+srv://libraryproject:library123@cluster0.cgbtbyi.mongo
 //adding book
 
 app.post('/addBook', async function(req, res) {
-    // if (!req.body.bookName || !req.body.author || !req.body.language || !req.body.serialNo) {
-    //     return res.status(400).send('All fields are required');
-    // }
+    if (!req.body.bookName || !req.body.author || !req.body.language || !req.body.serialNo) {
+        return res.status(400).send('All fields are required');
+    }
     var bookData = new bookModel({
         bookName: req.body.bookName,
         author: req.body.author,
@@ -33,6 +33,30 @@ app.post('/addBook', async function(req, res) {
         res.status(500).send('Failed to add book');
     }
 });
+
+app.post('/editBook/:id', async function(req, res) {
+    try {
+        if (!req.body.bookName || !req.body.author || !req.body.language || !req.body.serialNo) {
+            return res.status(400).send('All fields are required');
+        }
+        const bookId = req.params.id;
+        const book = await bookModel.findById(bookId);
+        if (!book) {
+            return res.status(404).send('Book not found');
+        }
+        book.bookName = req.body.bookName;
+        book.author = req.body.author;
+        book.language = req.body.language;
+        book.serialNo = req.body.serialNo;
+        await book.save();
+        res.json(book);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Failed to update book');
+    }
+});
+
+
 app.get('/adminHome', async function(req, res) {
     try {
         const books = await bookModel.find({});
@@ -44,14 +68,39 @@ app.get('/adminHome', async function(req, res) {
 });
 
 
+app.post('/deleteBook/:id', function(req, res) {
+    const bookId = req.params.id;
+    bookModel.deleteOne({ _id: bookId })
+      
+      .catch(err => {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+      });
+  });
 
-//adding student
 
-//studentName,
-    //     class,
-    //     division,
-    //     admissionNo,
-    //     gender
+app.get('/bookDetails/:id', async function(req, res) {
+    try {
+        const bookId = req.params.id;
+        const book = await bookModel.findById(bookId);
+        res.json(book);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Failed to retrieve book details');
+    }
+});
+
+app.get('/editBook/:id', async function(req, res) {
+    try {
+        const bookId = req.params.id;
+        const book = await bookModel.findById(bookId);
+        res.json(book);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Failed to retrieve book details');
+    }
+});
+
 
 app.post('/addStudent', async function(req, res) {
     if (!req.body.studentName || !req.body.className || !req.body.division || !req.body.admissionNo || !req.body.gender) {
