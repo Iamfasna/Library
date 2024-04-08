@@ -17,7 +17,7 @@ function BookList({ books,currentPage }) {
       {books.map((book, index ) => (
         
   <div key={index} className='book-box'>
-    <Link to={`/book/${book.id}`}>
+    <Link to={`/bookDetails/${book._id}`} style={{textDecoration :"none",color:"gray"}}> 
     <h4>{++bookNo}.{book.bookName}</h4>
     </Link>
     

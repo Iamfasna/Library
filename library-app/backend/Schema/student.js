@@ -31,7 +31,11 @@ const studentSchema = mongoose.Schema({
     serialNo: {
         type: String,
         required: true
-    }
+    },
+    issueDate: {
+      type: Date,
+      default: Date.now
+  },
 }]
 
  
