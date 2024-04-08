@@ -5,6 +5,9 @@ import './Pagination.js'
 
 function BookList({ books,currentPage }) {
  // const [bookList, setBookList] = useState([]);
+ if (!Array.isArray(books)) {
+  return <div>No books available</div>;
+}
 
 
  let bookNo =(currentPage-1)*15;

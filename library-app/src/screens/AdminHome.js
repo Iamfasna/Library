@@ -3,14 +3,17 @@ import SubHeader from '../components/SubHeader';
 import BookList from '../components/BookList';
 import Pagination from '../components/Pagination';
 import Header from '../components/Header';
-import {useNavigate}  from "react-router-dom";
+//import {useNavigate}  from "react-router-dom";
+
 
 function AdminHome() {
   const [books, setBooks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 15;
-  const Navigation =useNavigate()
+ // const Navigation =useNavigate()
 
+
+  
   useEffect(() => {
     const fetchBooks = async () => {
       try {

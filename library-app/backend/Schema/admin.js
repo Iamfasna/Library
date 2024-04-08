@@ -16,6 +16,10 @@ const adminSchema = mongoose.Schema({
     type:String,
     required:true
   },
+  loggedIn: {
+    type:Boolean,
+    default:false
+  }
   
  
 })

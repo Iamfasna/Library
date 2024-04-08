@@ -17,7 +17,12 @@ function SubHeader() {
          </div>
             </div>
        
-        
+            <div className="p-2 ml-10" >
+              <button type="button" className="btn btn-secondary">Add Book</button>
+        </div>
+        <div className="p-2 ml-10" >
+              <button type="button" className="btn btn-secondary">Add Book</button>
+        </div>
 
         <div className="p-2 ml-10" >
               <button type="button" className="btn btn-secondary">Add Book</button>
