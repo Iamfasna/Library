@@ -21,9 +21,9 @@ function App() {
           <Route path="/addBook" element={<AddBook />}></Route>
           <Route path="/addStudent" element={<AddStudent />}></Route>
           <Route path="/bookIssue" element={<BookIssue />}></Route>
-          <Route path="/bookIssueclone" element={<BookIssueclone />}></Route>
+          <Route path="/bookIssueclone/:admissionNo" element={<BookIssueclone />} />
           <Route path="/bookDetails/:id" element={<BookDetails />}> </Route>
-          <Route path="/editBook/:id" element={<EditBook/>}> </Route>
+          <Route path="/editBook/:id" element={<EditBook />}> </Route>
         </Routes>
       </Router>
 

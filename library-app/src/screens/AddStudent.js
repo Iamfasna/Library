@@ -10,25 +10,25 @@ function AddStudent() {
     addBook,
     formState: { errors },
   } = useForm();
-  
-    const [studentName, setName] = useState('');
-    const [className, setClass] = useState('');
-    const [division, setDivision] = useState('');
-    const [admissionNo, setAdNo] = useState('');
-    const [gender, setGender] = useState('');
-  
-  
-    const addStudent = async (e) => {
-      e.preventDefault();
-      await Axios.post('http://localhost:5000/addStudent', {
-        studentName,
-        className,
-        division,
-        admissionNo,
-        gender
-      })
-      window.location.reload(false);
-    }
+
+  const [studentName, setName] = useState('');
+  const [className, setClass] = useState('');
+  const [division, setDivision] = useState('');
+  const [admissionNo, setAdNo] = useState('');
+  const [gender, setGender] = useState('');
+
+
+  const addStudent = async (e) => {
+    e.preventDefault();
+    await Axios.post('http://localhost:5000/addStudent', {
+      studentName,
+      className,
+      division,
+      admissionNo,
+      gender
+    })
+    window.location.reload(false);
+  }
   return (
     <div>
       <Header />
@@ -79,20 +79,20 @@ function AddStudent() {
               Admission No
             </label>
             <input
-  type="text"
-  className="form-control"
-  id="formGroupExampleInput"
-  placeholder="123.."
-  {...register("number", {
-    required: "Required",
-    pattern: {
-      value: /^[0-9]+$/,
-      message: "Invalid admission number"
-    }
-  })}
-  onChange={(e) => { setAdNo(e.target.value) }}
-/>
-{errors.number && errors.number.message}
+              type="text"
+              className="form-control"
+              id="formGroupExampleInput"
+              placeholder="123.."
+              {...register("number", {
+                required: "Required",
+                pattern: {
+                  value: /^[0-9]+$/,
+                  message: "Invalid admission number"
+                }
+              })}
+              onChange={(e) => { setAdNo(e.target.value) }}
+            />
+            {errors.number && errors.number.message}
 
           </div>
           <div className="mb-3">
