@@ -39,6 +39,8 @@ nav {
     position: relative;
     display: inline-block;
     
+
+    
   }
   
   .dropdown-button {
@@ -83,11 +85,4 @@ nav {
     display: block;
   }
 
-  /* .cards{
-  background-color: #dcdbdb5b;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  } */
+ 

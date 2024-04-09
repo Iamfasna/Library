@@ -4,29 +4,20 @@ import React from 'react'
 function SubHeader() {
   return (
     <div>
-        <div className=" d-flex m-5 justify-content-between" style={{background:"#509091"}}>
-            <div className=" d-flex w-70%">
-            <div className='p-2'>
-            <form className="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
-          <input type="search" className="form-control" style={{width :"98%"}} placeholder="Search..." aria-label="Search"/>          
-        </form>
+        <div className="d-flex mx-auto my-4 justify-content-between align-items-center px-4 rounded-2" style={{background:"rgba(80, 144, 145, .6)",width:"95%",height:"70px"}}>
+           <div className="d-flex align-items-center">
+          <input type="search" className="form-control" style={{width :"20rem"}} placeholder="Search..." aria-label="Search"/>          
         </div>
-       
-        <div className='p-2'>
-        <button type="button" className="btn btn-secondary ms-2">Search</button>
-         </div>
-            </div>
-       
-            <div className="p-2 ml-10" >
-              <button type="button" className="btn btn-secondary">Add Book</button>
-        </div>
-        <div className="p-2 ml-10" >
-              <button type="button" className="btn btn-secondary">Add Book</button>
-        </div>
-
-        <div className="p-2 ml-10" >
-              <button type="button" className="btn btn-secondary">Add Book</button>
-        </div>
+         <div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Actions
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Add Book</a></li>
+    <li><a class="dropdown-item" href="#">Recive Book</a></li>
+    <li><a class="dropdown-item" href="#">Issue Book</a></li>
+  </ul>
+</div>
       </div>
     </div>
   )
