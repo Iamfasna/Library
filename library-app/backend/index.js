@@ -1,18 +1,41 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser')
 const app = express();
 const adminModel = require('./Schema/admin');
 const bookModel = require('./Schema/book');
 const studentModel = require('./Schema/student');
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin:["http://localhost:3000"],
+  methods:["GET","POST"],
+  credentials:true
+}));
+app.use(cookieParser())
+const JWT_SECRET = 'your-secret-key';
 
 
 mongoose.connect('mongodb+srv://libraryproject:library123@cluster0.cgbtbyi.mongodb.net/librarydata?retryWrites=true&w=majority')
 
+const verifyUser = (req,res,next) => {
+  const token =req.cookies.token
+  if(!token){
+    return res.status(401).json({ success: false, error: 'Token not available' });
+  }else {
+    jwt.verify(token,JWT_SECRET,(err,decoded) =>{
+      if (err) return res.status(401).json({ success: false, error: 'Invalid token' });
+      req.userId = decoded.userId;
+      next()
+    }
+  )
+  }
+}
+
 //adding book
+
 
 app.post('/addBook', async function(req, res) {
     if (!req.body.bookName || !req.body.author || !req.body.language || !req.body.serialNo) {
@@ -66,6 +89,67 @@ app.get('/adminHome', async function(req, res) {
         res.status(500).send('Failed to retrieve books');
     }
 });
+
+// Server-Side
+
+app.post('/', async function(req, res) {
+  const { email, password } = req.body;
+  try {
+      const loggedInAdmin = await adminModel.findOne({ loggedIn: true });
+      if (loggedInAdmin) {
+          return res.status(401).json({ success: false, error: 'Another admin is already logged in' });
+      }
+
+      const user = await adminModel.findOne({ email: email });
+      if (!user) {
+          return res.status(404).json({ success: false, error: 'User not found' });
+      }
+      
+      if (password !== user.password) {
+          return res.status(401).json({ success: false, error: 'Incorrect password' });
+      }
+
+      const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "1d" });
+      user.loggedIn = true; // Set loggedIn flag
+      await user.save();
+      res.cookie("token", token)
+      res.json({ user, success: true });
+  } catch (err) {
+      console.error(err);
+      res.status(500).send('Failed to retrieve books');
+  }
+});
+app.get('/adminName',verifyUser, async function(req, res) {
+  try {
+    const admin = await adminModel.findById(req.userId);
+    console.log(admin)
+    if (!admin) {
+      return res.status(404).json({ success: false, error: 'Admin not found' });
+    }
+    res.json({ adminName: admin.adminName, success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Failed to retrieve admin name');
+  }
+  });
+
+app.post('/logout', async function(req, res) {
+  try {
+      const user = await adminModel.findOne({ loggedIn: true });
+      if (user) {
+          user.loggedIn = false;
+          await user.save();
+      }
+      res.clearCookie('token').sendStatus(200);
+  } catch (err) {
+      console.error(err);
+      res.status(500).send('Failed to logout');
+  }
+});
+
+
+
+
 
 
 app.post('/deleteBook/:id', function(req, res) {
