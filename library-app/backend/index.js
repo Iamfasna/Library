@@ -77,19 +77,81 @@ app.get('/bookIssue/:admissionNo', async function (req, res) {
     }
 });
 
-app.get('/bookHeader/:serialNo', async function (req, res) {
+app.get('/bookHeader/:serialNo/:admissionNo', async function (req, res) {
     const serialNo = req.params.serialNo;
+    const admissionNo = req.params.admissionNo;
 
     try {
         const book = await bookModel.findOne({ serialNo: serialNo });
         if (!book) {
             return res.json(null);
+        } else {
+            const student = await studentModel.findOne({ admissionNo: admissionNo });
+            // Check if student exists
+            if (!student) {
+                return res.status(404).json({ error: 'Student not found' });
+            }
+            // Check if student.issuedBooks exists, if not, create it
+            if (!student.issuedBooks) {
+                student.issuedBooks = {};
+            }
+            const newBook = {
+                bookName: book.bookName,
+                serialNo: book.serialNo,
+                issueDate: new Date() // Use current date and time
+            };
+            student.issuedBooks.push(newBook);
+            await student.save();
+            book.issueStatus = "yes";
+            book.admissionNo = admissionNo;
+            await book.save();
         }
         res.json(book);
     } catch (err) {
-        res.status(500).send('Failed to fetch book details')
+        console.error(err);
+        res.status(500).send('Failed to fetch book details');
     }
-})
+});
+app.get('/returnBook/:serialNo/:admissionNo', async function (req, res) {
+    const serialNo = req.params.serialNo;
+    const admissionNo = req.params.admissionNo;
+
+    try {
+        const book = await bookModel.findOne({ serialNo: serialNo });
+        if (!book) {
+            return res.status(404).json({ error: 'Book not found' });
+        }
+
+        const student = await studentModel.findOne({ admissionNo: admissionNo });
+        if (!student) {
+            return res.status(404).json({ error: 'Student not found' });
+        }
+
+        // Find the index of the book to be returned in student's issuedBooks array
+        const index = student.issuedBooks.findIndex((issuedBook) => issuedBook.serialNo === serialNo);
+
+        if (index === -1) {
+            return res.status(404).json({ error: 'Book not issued to student' });
+        }
+
+        // Remove the book from student's issuedBooks array
+        student.issuedBooks.splice(index, 1);
+
+        // Save the updated student document
+        await student.save();
+
+        // Update book's issueStatus to "No" and remove the admissionNo
+        book.issueStatus = "No";
+        book.admissionNo = null;
+        await book.save();
+
+        res.json({ message: 'Book returned successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Failed to return book');
+    }
+});
+
 
 
 app.listen(5000, () => {

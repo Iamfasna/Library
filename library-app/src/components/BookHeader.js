@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import '../styles/Header.css';
-import IssuedBooksTable from './IssuedBooksTable';
 import Axios from 'axios';
+import { useParams } from 'react-router-dom'
 
 function BookHeader() {
   const [serialNo, setSerialNo] = useState('');
-
+  const { admissionNo } = useParams();
 
   function handleAddbook() {
-    Axios.get(`http://localhost:5000/bookHeader/${serialNo}`)
+    Axios.get(`http://localhost:5000/bookHeader/${serialNo}/${admissionNo}`)
       .then(response => {
         if (response.data === null) {
           alert("Enter valid Serial No");
           // Clear input field
           setSerialNo('');
         } else {
-
+          window.location.reload(false);
         }
       })
       .catch(error => {
