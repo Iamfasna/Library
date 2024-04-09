@@ -1,16 +1,41 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser')
 const app = express();
 const adminModel = require('./Schema/admin');
 const bookModel = require('./Schema/book');
 const studentModel = require('./Schema/student');
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
+}));
+app.use(cookieParser())
+const JWT_SECRET = 'your-secret-key';
 
 
 mongoose.connect('mongodb+srv://libraryproject:library123@cluster0.cgbtbyi.mongodb.net/librarydata?retryWrites=true&w=majority')
+
+const verifyUser = (req, res, next) => {
+    const token = req.cookies.token
+    if (!token) {
+        return res.status(401).json({ success: false, error: 'Token not available' });
+    } else {
+        jwt.verify(token, JWT_SECRET, (err, decoded) => {
+            if (err) return res.status(401).json({ success: false, error: 'Invalid token' });
+            req.userId = decoded.userId;
+            next()
+        }
+        )
+    }
+}
+
+//adding book
+
 
 app.post('/addBook', async function (req, res) {
     if (!req.body.bookName || !req.body.author || !req.body.language || !req.body.serialNo) {
@@ -25,9 +50,6 @@ app.post('/addBook', async function (req, res) {
     try {
         await bookData.save();
         res.json();
-
-        // // Redirect the client to the specified URL
-        // res.redirect('http://localhost:3000/addBook');
     } catch (err) {
         // Handle any errors that occur during the save operation
         console.error(err);

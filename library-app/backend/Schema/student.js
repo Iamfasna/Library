@@ -38,7 +38,6 @@ const studentSchema = mongoose.Schema({
     },
   }]
 
-
 })
 
 module.exports = mongoose.model("student", studentSchema);//name of collection

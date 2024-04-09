@@ -8,6 +8,7 @@ import AddStudent from './screens/AddStudent';
 import BookDetails from './screens/BookDetails';
 import BookIssue from './screens/BookIssue';
 import BookIssueclone from './screens/BookIssueclone';
+import EditBook from './screens/EditBook';
 
 function App() {
   return (
@@ -20,9 +21,15 @@ function App() {
           <Route path="/addBook" element={<AddBook />}></Route>
           <Route path="/addStudent" element={<AddStudent />}></Route>
           <Route path="/bookIssue" element={<BookIssue />}></Route>
+<<<<<<< HEAD
           <Route path="/bookIssueclone/:admissionNo" element={<BookIssueclone />} />
           <Route path="/bookDetails" element={<BookDetails />}></Route>
 
+=======
+          <Route path="/bookIssueclone" element={<BookIssueclone />}></Route>
+          <Route path="/bookDetails/:id" element={<BookDetails />}> </Route>
+          <Route path="/editBook/:id" element={<EditBook/>}> </Route>
+>>>>>>> master
         </Routes>
       </Router>
 

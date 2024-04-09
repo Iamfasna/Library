@@ -20,16 +20,15 @@ const bookSchema = mongoose.Schema({
     required: true
   },
 
-  issueStatus: [{
-    status: {
-      type: String,
-      default: "No",
-      required: true
-    },
-
-  }]
-
-
+  issueStatus: {
+    type: String,
+    default: "No",
+  },
+  admissionNo: {
+    type: Number,
+    default: null,
+    unique: true
+  }
 
 })
 

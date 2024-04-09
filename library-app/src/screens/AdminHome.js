@@ -1,33 +1,57 @@
-import React from 'react'
-import SubHeader from '../components/SubHeader'
-import BookList from '../components/BookList'
-import Pagination from '../components/Pagination'
+import React, { useEffect, useState } from 'react';
+import SubHeader from '../components/SubHeader';
+import BookList from '../components/BookList';
+import Pagination from '../components/Pagination';
 import Header from '../components/Header';
+//import {useNavigate}  from "react-router-dom";
+
 
 function AdminHome() {
-  const books = Array.from({ length: 5000 }, (_, i) => `Book ${i + 1}`);
+  const [books, setBooks] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 15;
+ // const Navigation =useNavigate()
+
+
+  
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/adminHome');
+        const data = await response.json();
+        setBooks(data);
+      } catch (error) {
+        console.error('Error fetching books:', error);
+      }
+    };
+
+    fetchBooks();
+  }, []);
+
   const onPageChange = (page) => {
     console.log(`Page ${page} selected`);
+    setCurrentPage(page);
   };
 
-  if (!books) {
-    return null;
-  }
+  // Calculate the index of the first book to display on the current page
+  const startIndex = (currentPage - 1) * pageSize;
+  // Slice the books array to display only the books for the current page
+  const displayedBooks = books.slice(startIndex, startIndex + pageSize);
+
+ 
 
   return (
     <div>
-      <Header/>
-     
-    <div className="mt-5">
-         <SubHeader />
-    <div className="book-box-container">
-      <BookList books={books.slice(0, pageSize)} />
-      <Pagination books={books} pageSize={pageSize} onPageChange={onPageChange} />
+      <Header />
+      <div className="mt-5">
+        <SubHeader />
+        <div className="book-box-container"  >
+          <BookList books={displayedBooks} currentPage={currentPage} />
+          <Pagination totalBooks={books.length} pageSize={pageSize} currentPage={currentPage} onPageChange={onPageChange} />
+        </div>
+      </div>
     </div>
-  </div>
-  </div>
-  )
+  );
 }
 
-export default AdminHome
+export default AdminHome;
