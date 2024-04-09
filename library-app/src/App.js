@@ -20,9 +20,7 @@ function App() {
           <Route path="/addBook" element={<AddBook />}></Route>
           <Route path="/addStudent" element={<AddStudent />}></Route>
           <Route path="/bookIssue" element={<BookIssue />}></Route>
-          <Route path="/bookIssueclone" element={<BookIssueclone />}></Route>
-
-
+          <Route path="/bookIssueclone/:admissionNo" element={<BookIssueclone />} />
           <Route path="/bookDetails" element={<BookDetails />}></Route>
 
         </Routes>

@@ -1,6 +1,8 @@
+// IssuedBooksTable.js
 import React from 'react';
 
-function IssuedBooksTable() {
+function IssuedBooksTable({ student }) {
+  const issuedBooks = student.issuedBooks || []
   return (
     <div className="container mt-4">
       <table className="table">
@@ -8,37 +10,29 @@ function IssuedBooksTable() {
           <tr>
             <th>No</th>
             <th>Book Name</th>
-            <th>Issued Date</th>
-            <th>Due</th>
+            <th>Serial No</th>
+            <th>Issue Date</th>
+            <th>Due Date</th>
             <th>Return</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Book 1</td>
-            <td>Author 1</td>
-            <td>2024-04-05</td>
-            <td >
-              <button className="btn btn-primary">Return</button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Book 2</td>
-            <td>Author 2</td>
-            <td>2024-04-06</td>
-            <td>
-              <button className="btn btn-primary"> Return</button>
-            </td>
-          </tr>
-          {/* Add more rows for additional issued books */}
+          {issuedBooks.map((book, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{book.bookName}</td>
+              <td>{book.serialNo}</td>
+              <td>{new Date(book.issueDate).toLocaleDateString()}</td>
+              <td>{new Date(new Date(book.issueDate).getTime() + (15 * 24 * 60 * 60 * 1000)).toLocaleDateString()}</td>
+              <td>
+                <button className="btn btn-primary">Return</button>
+              </td>
+            </tr>
+          ))}
         </tbody>
-      </table >
-    </div >
+      </table>
+    </div>
   );
 }
 
 export default IssuedBooksTable;
-
-
