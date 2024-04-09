@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import Header from "../components/Header";
 import '../styles/BookIssue.css';
 import BookHeader from "../components/BookHeader";
-
+import Axios from 'axios';
 
 
 function BookIssue() {
+  const [admissionNo, setadmissionNo] = useState('');
+  const navigate = useNavigate();
+
+  function bookIssueCheck() {
+    Axios.get(`http://localhost:5000/bookIssue/${admissionNo}`)
+      .then(response => {
+        if (response.data === null) {
+          alert("Enter valid No");
+          window.location.reload(false);
+        } else {
+          navigate(`/bookIssueclone/${admissionNo}`);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        // Handle other errors if needed
+      });
+  }
+
   return (
     <div>
       <Header />
@@ -28,8 +48,10 @@ function BookIssue() {
       </div>
       <div className="row align-items-center">
         <div className="col1">
-          <input type="number" className="form-control input" placeholder="Enter Admission No" style={{ width: '300px' }} />
-          < button type="submit" className="btn">Submit</button>
+          <input type="number" className="form-control input" placeholder="Enter Admission No" style={{ width: '300px' }} onChange={(e) => { setadmissionNo(e.target.value) }} />
+
+          < button onClick={bookIssueCheck} type="submit" className="btn">Submit</button>
+
         </div>
       </div>
       <BookHeader />
