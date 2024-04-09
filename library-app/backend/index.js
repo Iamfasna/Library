@@ -148,9 +148,6 @@ app.post('/logout', async function(req, res) {
 
 
 
-
-
-
 app.post('/deleteBook/:id', function(req, res) {
     const bookId = req.params.id;
     bookModel.deleteOne({ _id: bookId })
