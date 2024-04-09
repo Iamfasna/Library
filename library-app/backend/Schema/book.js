@@ -19,7 +19,17 @@ const bookSchema = mongoose.Schema({
     type:String,
     required:true
   },
- 
+  
+  issueStatus:{
+    type:String,
+    default:"No",
+  },
+  admissionNo:{
+    type:Number,
+    default:null,
+    unique:true
+  }
+
 })
 
 module.exports = mongoose.model("book",bookSchema);//name of collection

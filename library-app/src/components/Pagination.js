@@ -1,34 +1,26 @@
-import React from 'react'
+import React from 'react';
 
-function Pagination({ books, pageSize, onPageChange }) {
-  const totalPages = Math.ceil(books.length / pageSize);
+function Pagination({ totalBooks, pageSize, currentPage, onPageChange }) {
+  const totalPages = Math.ceil(totalBooks / pageSize);
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div style={{ margin: '20px 45%' }}>
+    <div  style={{margin:'20px 40%'}}>
       <ul className="pagination">
-        <li className="page-item">
-          <a className="page-link" href="/adminHome" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span className="sr-only">Previous</span>
-          </a>
+        <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+          <button className="page-link" onClick={() => onPageChange(currentPage - 1)}>&laquo;</button>
         </li>
         {pageNumbers.map((page) => (
-          <li className="page-item" key={page}>
-            <a className="page-link" href="/adminHome" onClick={() => onPageChange(page)}>
-              {page}
-            </a>
+          <li key={page} className={`page-item ${currentPage === page ? 'active' : ''}`}>
+            <button className="page-link" onClick={() => onPageChange(page)}>{page}</button>
           </li>
         ))}
-        <li className="page-item">
-          <a className="page-link" href="/adminHome" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span className="sr-only">Next</span>
-          </a>
+        <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+          <button className="page-link" onClick={() => onPageChange(currentPage + 1)}>&raquo;</button>
         </li>
       </ul>
     </div>
-  )
+  );
 }
 
-export default Pagination
+export  default Pagination;
