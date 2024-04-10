@@ -27,12 +27,12 @@ function BookHeader() {
 
   return (
     <div>
-      <div className="d-flex  justify-content-between mt-4 " style={{ background: "#509091" }}>
+      <div className="d-flex mx-auto my-4 align-items-center px-4 rounded-2"style={{background:"rgba(80, 144, 145, .6)",width:"95%",height:"60px"}}>
         <form className="d-flex">
           <div className="col-auto ">
             <input type="search" className="form-control mt-3" placeholder="Enter Serial No" aria-label="Search" onChange={(e) => { setSerialNo(e.target.value) }} />
           </div>
-          <button style={{ width: '100px' }} type="button" className="btn btn-primary px-2 py-1 ms-2" onClick={handleAddbook} > ADD BOOK</button>
+          <button style={{ width: '100px',height:"34px" }} type="button" className="btn btn-secondary px-2 py-1 ms-4" onClick={handleAddbook} > ADD BOOK</button>
         </form>
       </div>
     </div>

@@ -27,7 +27,7 @@ function IssuedBooksTable({ student }) {
   return (
     <div className="container mt-4">
       <table className="table">
-        <thead>
+        <thead className="text-center">
           <tr>
             <th>No</th>
             <th>Book Name</th>
@@ -37,7 +37,7 @@ function IssuedBooksTable({ student }) {
             <th>Return</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-center">
           {issuedBooks.map((book, index) => {
             const issueDate = new Date(book.issueDate);
             const dueDate = new Date(issueDate.getTime() + (15 * 24 * 60 * 60 * 1000)); // 15 days after issue
@@ -51,7 +51,7 @@ function IssuedBooksTable({ student }) {
             }
 
             return (
-              <tr key={index}>
+              <tr className='text-center align-middle' key={index}>
                 <td>{index + 1}</td>
                 <td>{book.bookName}</td>
                 <td>{book.serialNo}</td>
@@ -59,7 +59,7 @@ function IssuedBooksTable({ student }) {
                 <td className={colorClass}>{dueDate.toLocaleDateString()}</td>
                 <td>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-secondary"
                     onClick={() => returnClick(book.serialNo)}
                   >
                     Return
