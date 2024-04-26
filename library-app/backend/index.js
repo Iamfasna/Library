@@ -1,11 +1,13 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const adminModel = require('./Schema/admin');
 const bookModel = require('./Schema/book');
 const studentModel = require('./Schema/student');
+const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(express.json());
@@ -15,10 +17,10 @@ app.use(cors({
     credentials: true
 }));
 app.use(cookieParser())
-const JWT_SECRET = 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 
-mongoose.connect('mongodb+srv://libraryproject:library123@cluster0.cgbtbyi.mongodb.net/librarydata?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGODB_URI)
 
 
 
@@ -37,12 +39,17 @@ const verifyUser = (req,res,next) => {
 
 
 
+
+
 // Server-Side
 
 
 app.post('/', async function(req, res) {
     const { email, password } = req.body;
     try {
+        // console.log(password)
+        // const pass = await bcrypt.hash(password,10);
+        // console.log(pass,'hi')
         const loggedInAdmin = await adminModel.findOne({ loggedIn: true });
         if (loggedInAdmin) {
             return res.status(401).json({ success: false, error: 'Another admin is already logged in' });
@@ -53,7 +60,10 @@ app.post('/', async function(req, res) {
             return res.status(404).json({ success: false, error: 'User not found' });
         }
         
-        if (password !== user.password) {
+        const checkPass = await bcrypt.compare(password,user.password)
+       
+        if (!checkPass) {
+           
             return res.status(401).json({ success: false, error: 'Incorrect password' });
         }
   
@@ -67,6 +77,15 @@ app.post('/', async function(req, res) {
         res.status(500).send('Failed to retrieve books');
     }
   });
+  app.get('/adminHome', async function(req, res) {
+    try {
+        const books = await bookModel.find({});
+        res.json(books);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Failed to retrieve books');
+    }
+});
   app.get('/adminName',verifyUser, async function(req, res) {
     try {
       const admin = await adminModel.findById(req.userId);
@@ -190,6 +209,28 @@ app.get('/editBook/:id', async function(req, res) {
     } catch (err) {
         console.error(err);
         res.status(500).send('Failed to retrieve book details');
+    }
+});
+
+app.post('/editBook/:id', async function(req, res) {
+    try {
+        if (!req.body.bookName || !req.body.author || !req.body.language || !req.body.serialNo) {
+            return res.status(400).send('All fields are required');
+        }
+        const bookId = req.params.id;
+        const book = await bookModel.findById(bookId);
+        if (!book) {
+            return res.status(404).send('Book not found');
+        }
+        book.bookName = req.body.bookName;
+        book.author = req.body.author;
+        book.language = req.body.language;
+        book.serialNo = req.body.serialNo;
+        await book.save();
+        res.json(book);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Failed to update book');
     }
 });
 

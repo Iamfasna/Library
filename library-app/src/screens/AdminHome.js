@@ -19,12 +19,12 @@ function AdminHome() {
   setSelectedBookId(bookId);
 };
 
-// Redirect to BookDetails page when a book is selected
-// if (selectedBookId) {
-//   Navigation(`/bookDetails/${selectedBookId}`);
-//   // Reset selectedBookId to null to prevent redirecting on subsequent renders
-//   setSelectedBookId(null);
-// }
+//Redirect to BookDetails page when a book is selected
+if (selectedBookId) {
+  Navigation(`/bookDetails/${selectedBookId}`);
+  // Reset selectedBookId to null to prevent redirecting on subsequent renders
+  setSelectedBookId(null);
+}
 
 
   

@@ -8,26 +8,33 @@ function IssuedBooksTable({ student }) {
   const { admissionNo } = useParams();
 
   const returnClick = async (serialNo) => {
-    try {
-      const response = await Axios.get(`http://localhost:5000/returnBook/${serialNo}/${admissionNo}`);
-      if (response.data === null) {
-        alert("Enter valid Serial No");
-        // Clear input field
-        setSerialNo('');
-      } else {
-        // Reload the page to reflect the updated list of issued books
-        window.location.reload(false);
+    // Display a confirmation dialog
+    const confirmReturn = window.confirm("Are you sure you want to return this book?");
+    
+    // If the user confirms, proceed with returning the book
+    if (confirmReturn) {
+      try {
+        const response = await Axios.get(`http://localhost:5000/returnBook/${serialNo}/${admissionNo}`);
+        if (response.data === null) {
+          alert("Enter valid Serial No");
+          // Clear input field
+          setSerialNo('');
+        } else {
+          // Reload the page to reflect the updated list of issued books
+          window.location.reload(false);
+        }
+      } catch (error) {
+        console.error(error);
+        // Handle other errors if needed
       }
-    } catch (error) {
-      console.error(error);
-      // Handle other errors if needed
     }
   };
+   
 
   return (
     <div className="container mt-4">
       <table className="table">
-        <thead>
+        <thead className="text-center">
           <tr>
             <th>No</th>
             <th>Book Name</th>
@@ -37,7 +44,7 @@ function IssuedBooksTable({ student }) {
             <th>Return</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-center">
           {issuedBooks.map((book, index) => {
             const issueDate = new Date(book.issueDate);
             const dueDate = new Date(issueDate.getTime() + (15 * 24 * 60 * 60 * 1000)); // 15 days after issue
@@ -51,7 +58,7 @@ function IssuedBooksTable({ student }) {
             }
 
             return (
-              <tr key={index}>
+              <tr className='text-center align-middle' key={index}>
                 <td>{index + 1}</td>
                 <td>{book.bookName}</td>
                 <td>{book.serialNo}</td>
@@ -59,7 +66,7 @@ function IssuedBooksTable({ student }) {
                 <td className={colorClass}>{dueDate.toLocaleDateString()}</td>
                 <td>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-secondary"
                     onClick={() => returnClick(book.serialNo)}
                   >
                     Return

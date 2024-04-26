@@ -36,7 +36,7 @@ function BookIssueClone() {
           <p>Student Name: {student.studentName}</p>
         </div>
         <div className="col">
-          <p>Class: {student.className}</p>
+        <p>Class: {student.className} {student.division}</p>
         </div>
       </div>
       <div className="row">

@@ -14,8 +14,8 @@ function BookIssue() {
     Axios.get(`http://localhost:5000/bookIssue/${admissionNo}`)
       .then(response => {
         if (response.data === null) {
-          alert("Enter valid No");
-          window.location.reload(false);
+          alert("No Student found");
+          navigate(`/addStudent`)
         } else {
           navigate(`/bookIssueclone/${admissionNo}`);
         }
@@ -29,7 +29,7 @@ function BookIssue() {
   return (
     <div>
       <Header />
-      <div className='title'>Book Issue</div>
+      <div className='title'>Issue/Receive Book</div>
       <div className="row">
         <div className="col">
           <p>Student Name :</p>
@@ -46,13 +46,14 @@ function BookIssue() {
           <p>Gender :</p>
         </div>
       </div>
-      <div className="row align-items-center">
-        <div className="col1">
-          <input type="number" className="form-control input" placeholder="Enter Admission No" style={{ width: '300px' }} onChange={(e) => { setadmissionNo(e.target.value) }} />
-
-          < button onClick={bookIssueCheck} type="submit" className="btn">Submit</button>
-
-        </div>
+      <div className="d-flex align-items-center mx-3">
+        <div className="">
+          <input type="text" inputmode="numeric" className="form-control input" placeholder="Enter Admission No" style={{ width: '300px',height:"40px" }} onChange={(e) => { setadmissionNo(e.target.value) }} />
+          </div>
+<div className="mx-5">
+< button onClick={bookIssueCheck} type="submit" className="btn btn-secondary">Submit</button>
+</div>
+          
       </div>
       <BookHeader />
     </div >
