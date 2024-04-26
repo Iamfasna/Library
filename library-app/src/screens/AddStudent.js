@@ -2,33 +2,33 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import '../styles/AddBook.css';
 import Axios from 'axios';
-import { useForm } from "react-hook-form";
+//import { useForm } from "react-hook-form";
 
 function AddStudent() {
-  const {
-    register,
-    addBook,
-    formState: { errors },
-  } = useForm();
-  
-    const [studentName, setName] = useState('');
-    const [className, setClass] = useState('');
-    const [division, setDivision] = useState('');
-    const [admissionNo, setAdNo] = useState('');
-    const [gender, setGender] = useState('');
-  
-  
-    const addStudent = async (e) => {
-      e.preventDefault();
-      await Axios.post('http://localhost:5000/addStudent', {
-        studentName,
-        className,
-        division,
-        admissionNo,
-        gender
-      })
-      window.location.reload(false);
-    }
+  // const {
+  //   register,
+  //   addBook,
+  //   formState: { errors },
+  // } = useForm();
+
+  const [studentName, setName] = useState('');
+  const [className, setClass] = useState('');
+  const [division, setDivision] = useState('');
+  const [admissionNo, setAdNo] = useState('');
+  const [gender, setGender] = useState('');
+
+
+  const addStudent = async (e) => {
+    e.preventDefault();
+    await Axios.post('http://localhost:5000/addStudent', {
+      studentName,
+      className,
+      division,
+      admissionNo,
+      gender
+    })
+    window.location.reload(false);
+  }
   return (
     <div>
       <Header />
@@ -47,31 +47,33 @@ function AddStudent() {
               onChange={(e) => { setName(e.target.value) }}
             />
           </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div className="mb-4">
+          <div style={{ display: "flex", justifyContent: "space-between", width :"100%",margin:"auto"}}>
+            <div className="w-50" style={{margin:"1.5rem" , maxWidth:"300px"}}>
               <label htmlFor="formGroupExampleInput2" className="form-label">
                 Class
               </label>
-              <input
-                type="Number"
-                className="form-control"
-                id="formGroupExampleInput2"
-                placeholder="class" required
-                onChange={(e) => { setClass(e.target.value) }}
-
-              />
+              <select className="form-select" required id="classSelect" onChange={(e) => { setClass(e.target.value) }}>
+              <option value="">Select class</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
             </div>
-            <div className="mb-4">
-              <label htmlFor="formGroupExampleInput2" className="form-label">
+            <div className="w-50" style={{margin:"1.5rem " , maxWidth:"300px"}}>
+              <label htmlFor="formGroupExampleInput2" className="form-label" >
                 Division
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id="formGroupExampleInput2"
-                placeholder="division" required
-                onChange={(e) => { setDivision(e.target.value) }}
-              />
+              <select className="form-select" required id="divisionSelect" onChange={(e) => { setDivision(e.target.value) }}>
+              <option value="">Select division</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+            </select>
             </div>
           </div>
           <div className="mb-3">
@@ -79,21 +81,13 @@ function AddStudent() {
               Admission No
             </label>
             <input
-  type="text"
-  className="form-control"
-  id="formGroupExampleInput"
-  placeholder="123.."
-  {...register("number", {
-    required: "Required",
-    pattern: {
-      value: /^[0-9]+$/,
-      message: "Invalid admission number"
-    }
-  })}
-  onChange={(e) => { setAdNo(e.target.value) }}
-/>
-{errors.number && errors.number.message}
-
+              type="text"
+              className="form-control"
+              id="formGroupExampleInput"
+              placeholder="123.."
+        
+             onChange={(e) => { setAdNo(e.target.value) }}
+            />            
           </div>
           <div className="mb-3">
             <label htmlFor="genderSelect" className="form-label">

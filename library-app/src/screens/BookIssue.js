@@ -1,15 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import Header from "../components/Header";
 import '../styles/BookIssue.css';
 import BookHeader from "../components/BookHeader";
-
+import Axios from 'axios';
 
 
 function BookIssue() {
+  const [admissionNo, setadmissionNo] = useState('');
+  const navigate = useNavigate();
+
+  function bookIssueCheck() {
+    Axios.get(`http://localhost:5000/bookIssue/${admissionNo}`)
+      .then(response => {
+        if (response.data === null) {
+          alert("No Student found");
+          navigate(`/addStudent`)
+        } else {
+          navigate(`/bookIssueclone/${admissionNo}`);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        // Handle other errors if needed
+      });
+  }
+
   return (
     <div>
       <Header />
-      <div className='title'>Book Issue</div>
+      <div className='title'>Issue/Receive Book</div>
       <div className="row">
         <div className="col">
           <p>Student Name :</p>
@@ -26,11 +46,14 @@ function BookIssue() {
           <p>Gender :</p>
         </div>
       </div>
-      <div className="row align-items-center">
-        <div className="col1">
-          <input type="number" className="form-control input" placeholder="Enter Admission No" style={{ width: '300px' }} />
-          < button type="submit" className="btn">Submit</button>
-        </div>
+      <div className="d-flex align-items-center mx-3">
+        <div className="">
+          <input type="text" inputmode="numeric" className="form-control input" placeholder="Enter Admission No" style={{ width: '300px',height:"40px" }} onChange={(e) => { setadmissionNo(e.target.value) }} />
+          </div>
+<div className="mx-5">
+< button onClick={bookIssueCheck} type="submit" className="btn btn-secondary">Submit</button>
+</div>
+          
       </div>
       <BookHeader />
     </div >

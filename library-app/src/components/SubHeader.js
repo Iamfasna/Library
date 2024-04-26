@@ -8,19 +8,19 @@ function SubHeader({ onBookSelect, setSearchResult }) {
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
-  const handleSearch = async () => {
-    try {
-      const response = await Axios.get(`http://localhost:5000/searchBooks?query=${searchInput}`);
-      setSearchResults(response.data);
-    } catch (error) {
-      console.error('Error searching books:', error);
-    }
-  };
+  // const handleSearch = async () => {
+  //   try {
+  //     const response = await Axios.get(`http://localhost:5000/searchBooks?query=${searchInput}`);
+  //     setSearchResults(response.data);
+  //   } catch (error) {
+  //     console.error('Error searching books:', error);
+  //   }
+  // };
   const handleInputChange = async (e) => {
     setSearchInput(e.target.value);
     try {
       const response = await Axios.get(`http://localhost:5000/searchBooks?query=${e.target.value}`);
-      setSearchResult(response.data);
+      setSearchResults(response.data);
     } catch (error) {
       console.error('Error searching books:', error);
     }
@@ -45,18 +45,18 @@ function SubHeader({ onBookSelect, setSearchResult }) {
             
        
          <div class="dropdown">
-  <a className="btn btn-secondary dropdown-toggle" href='' role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <button className="btn btn-secondary dropdown-toggle"   data-bs-toggle="dropdown" aria-expanded="false">
     Actions
-  </a>
+  </button>
 
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="/addBook">Add Book</a></li>
-    <li><a class="dropdown-item" href="/bookIssue">Recive Book</a></li>
-    <li><a class="dropdown-item" href="/bookIssue">Issue Book</a></li>
+    <li><a class="dropdown-item" href="/bookIssue">Issue/Recive Book</a></li>
+    
   </ul>
 </div>
       </div>
-      {searchResults.length > 0 && (
+      {searchResults.length > 0 && searchInput !== '' && (
         <div className="search-results">
           <h5>Search Results:</h5>
           <ul>
