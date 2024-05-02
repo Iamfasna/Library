@@ -11,7 +11,7 @@ function EditBook() {
   const [book, setBook] = useState({});
   useEffect(() => {
   if (id) {
-    Axios.get(`http://localhost:5000/editBook/${id}`)
+    Axios.get(`http://3.6.171.18/editBook/${id}`)
   .then(response => {
     setBook(response.data);
         setName(response.data.bookName);
@@ -32,7 +32,7 @@ const navigate = useNavigate();
 
 const addBook = async (e) => {
   e.preventDefault();
-    await Axios.post(`http://localhost:5000/editBook/${id}`, {
+    await Axios.post(`http://3.6.171.18/editBook/${id}`, {
         bookName,
         author,
         language,

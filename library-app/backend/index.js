@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
@@ -11,11 +12,19 @@ const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(express.json());
+
+const _dirname = path.dirname("")
+const buildpath =path.join(_dirname,"../build")
+app.use(express.static(buildpath))
+
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://3.6.171.18"],
     methods: ["GET", "POST"],
     credentials: true
 }));
+
+path.join(_dirname,"../build/index.html")
+
 app.use(cookieParser())
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -461,9 +470,9 @@ app.get('/returnBook/:serialNo/:admissionNo', async function (req, res) {
     }
 });
 
+const PORT=process.env.PORT || 5000
 
-
-app.listen(5000, () => {
+app.listen(PORT, () => {
     console.log('Server is running');
 })
 

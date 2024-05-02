@@ -11,7 +11,7 @@ function BookIssue() {
   const navigate = useNavigate();
 
   function bookIssueCheck() {
-    Axios.get(`http://localhost:5000/bookIssue/${admissionNo}`)
+    Axios.get(`http://3.6.171.18/bookIssue/${admissionNo}`)
       .then(response => {
         if (response.data === null) {
           alert("No Student found");
