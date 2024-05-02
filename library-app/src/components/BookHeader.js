@@ -8,7 +8,7 @@ function BookHeader() {
   const { admissionNo } = useParams();
 
   function handleAddbook() {
-    Axios.get(`http://localhost:5000/bookHeader/${serialNo}/${admissionNo}`)
+    Axios.get(`http://3.6.171.18/bookHeader/${serialNo}/${admissionNo}`)
       .then(response => {
         if (response.data === null) {
           alert("Enter valid Serial No");

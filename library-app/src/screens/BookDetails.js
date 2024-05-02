@@ -13,7 +13,7 @@ function BookDetails() {
 
   useEffect(() => {
   if (id) {
-   Axios.get(`http://localhost:5000/bookDetails/${id}`)
+   Axios.get(`http://3.6.171.18/bookDetails/${id}`)
   .then(response => {
     console.log(response);
     setBook(response.data);
@@ -28,7 +28,7 @@ function BookDetails() {
 const navigate = useNavigate();
 function deleteBook(){
   alert("Delete the selected book?");
-  Axios.post(`http://localhost:5000/deleteBook/${id}`);
+  Axios.post(`http://3.6.171.18/deleteBook/${id}`);
   alert("Successfully deleted!");
   navigate('/adminHome');
 }

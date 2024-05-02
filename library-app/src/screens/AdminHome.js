@@ -31,7 +31,7 @@ if (selectedBookId) {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch('http://localhost:5000/adminHome');
+        const response = await fetch('http://3.6.171.18/adminHome');
         const data = await response.json();
         setBooks(data);
       } catch (error) {

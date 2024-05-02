@@ -14,7 +14,7 @@ function IssuedBooksTable({ student }) {
     // If the user confirms, proceed with returning the book
     if (confirmReturn) {
       try {
-        const response = await Axios.get(`http://localhost:5000/returnBook/${serialNo}/${admissionNo}`);
+        const response = await Axios.get(`http://3.6.171.18/returnBook/${serialNo}/${admissionNo}`);
         if (response.data === null) {
           alert("Enter valid Serial No");
           // Clear input field

@@ -19,7 +19,7 @@ function SubHeader({ onBookSelect, setSearchResult }) {
   const handleInputChange = async (e) => {
     setSearchInput(e.target.value);
     try {
-      const response = await Axios.get(`http://localhost:5000/searchBooks?query=${e.target.value}`);
+      const response = await Axios.get(`http://3.6.171.18/searchBooks?query=${e.target.value}`);
       setSearchResults(response.data);
     } catch (error) {
       console.error('Error searching books:', error);

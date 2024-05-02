@@ -20,7 +20,7 @@ function AddStudent() {
 
   const addStudent = async (e) => {
     e.preventDefault();
-    await Axios.post('http://localhost:5000/addStudent', {
+    await Axios.post('http://3.6.171.18/addStudent', {
       studentName,
       className,
       division,

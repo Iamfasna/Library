@@ -13,7 +13,7 @@ function Home() {
   axios.defaults.withCredentials= true  
   const handleSubmit = (e) =>{
       e.preventDefault();
-      axios.post("http://localhost:5000/", { email, password })
+      axios.post("http://http://3.6.171.18/", { email, password })
         .then(result => {
           console.log(result);
           if (result.data.success === true) {
