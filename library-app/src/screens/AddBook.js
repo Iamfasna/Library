@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/AddBook.css'
 import Header from '../components/Header';
 import Axios from 'axios';
+import { apiurl } from '../config';
 
 
 
@@ -14,7 +15,7 @@ function AddBook() {
 
   const addBook = async (e) => {
     e.preventDefault();
-    await Axios.post('http://3.6.171.18/addBook', {
+    await Axios.post(apiurl +'/addBook', {
       bookName,
       author,
       language,

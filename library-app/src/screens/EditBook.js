@@ -3,6 +3,7 @@ import '../styles/AddBook.css'
 import Header from '../components/Header';
 import Axios from 'axios';
 import {  useNavigate, useParams } from 'react-router-dom';
+import { apiurl } from '../config';
 
 
 
@@ -11,7 +12,7 @@ function EditBook() {
   const [book, setBook] = useState({});
   useEffect(() => {
   if (id) {
-    Axios.get(`http://3.6.171.18/editBook/${id}`)
+    Axios.get(`${apiurl}/editBook/${id}`)
   .then(response => {
     setBook(response.data);
         setName(response.data.bookName);
@@ -32,7 +33,7 @@ const navigate = useNavigate();
 
 const addBook = async (e) => {
   e.preventDefault();
-    await Axios.post(`http://3.6.171.18/editBook/${id}`, {
+    await Axios.post(`${apiurl}/editBook/${id}`, {
         bookName,
         author,
         language,

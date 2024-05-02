@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import '../styles/BookDetails.css'
 import { Link, useNavigate, useParams } from 'react-router-dom'
  import Axios from 'axios';
+import { apiurl } from '../config';
 // import { Client } from 'undici-types';
 
 
@@ -13,7 +14,7 @@ function BookDetails() {
 
   useEffect(() => {
   if (id) {
-   Axios.get(`http://3.6.171.18/bookDetails/${id}`)
+   Axios.get(`${apiurl}/bookDetails/${id}`)
   .then(response => {
     console.log(response);
     setBook(response.data);
@@ -28,7 +29,7 @@ function BookDetails() {
 const navigate = useNavigate();
 function deleteBook(){
   alert("Delete the selected book?");
-  Axios.post(`http://3.6.171.18/deleteBook/${id}`);
+  Axios.post(`${apiurl}/deleteBook/${id}`);
   alert("Successfully deleted!");
   navigate('/adminHome');
 }
