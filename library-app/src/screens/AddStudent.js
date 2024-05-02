@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import '../styles/AddBook.css';
 import Axios from 'axios';
+import { apiurl } from '../config';
 //import { useForm } from "react-hook-form";
 
 function AddStudent() {
@@ -20,7 +21,7 @@ function AddStudent() {
 
   const addStudent = async (e) => {
     e.preventDefault();
-    await Axios.post('http://3.6.171.18/addStudent', {
+    await Axios.post(apiurl +'/addStudent', {
       studentName,
       className,
       division,

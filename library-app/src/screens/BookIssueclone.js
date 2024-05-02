@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import '../styles/BookIssue.css';
 import BookHeader from "../components/BookHeader";
 import IssuedBooksTable from "../components/IssuedBooksTable";
+import { apiurl } from "../config";
 
 
 
@@ -14,7 +15,7 @@ function BookIssueClone() {
 
   useEffect(() => {
     if (admissionNo) {
-      axios.get(`http://3.6.171.18/bookIssue/${admissionNo}`)
+      axios.get(`${apiurl}/bookIssue/${admissionNo}`)
         .then(response => {
           setStudent(response.data)
         })

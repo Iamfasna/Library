@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import '../styles/Header.css';
 import Axios from 'axios';
 import { useParams } from 'react-router-dom'
+import { apiurl } from '../config';
 
 function BookHeader() {
   const [serialNo, setSerialNo] = useState('');
   const { admissionNo } = useParams();
 
   function handleAddbook() {
-    Axios.get(`http://3.6.171.18/bookHeader/${serialNo}/${admissionNo}`)
+    Axios.get(`${apiurl}/bookHeader/${serialNo}/${admissionNo}`)
       .then(response => {
         if (response.data === null) {
           alert("Enter valid Serial No");

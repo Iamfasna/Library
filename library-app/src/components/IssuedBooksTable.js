@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { useParams } from 'react-router-dom'
+import { apiurl } from '../config';
 
 function IssuedBooksTable({ student }) {
   const issuedBooks = student.issuedBooks || [];
@@ -14,7 +15,7 @@ function IssuedBooksTable({ student }) {
     // If the user confirms, proceed with returning the book
     if (confirmReturn) {
       try {
-        const response = await Axios.get(`http://3.6.171.18/returnBook/${serialNo}/${admissionNo}`);
+        const response = await Axios.get(`${apiurl}/returnBook/${serialNo}/${admissionNo}`);
         if (response.data === null) {
           alert("Enter valid Serial No");
           // Clear input field

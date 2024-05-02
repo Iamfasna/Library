@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import '../styles/BookIssue.css';
 import BookHeader from "../components/BookHeader";
 import Axios from 'axios';
+import { apiurl } from "../config";
 
 
 function BookIssue() {
@@ -11,7 +12,7 @@ function BookIssue() {
   const navigate = useNavigate();
 
   function bookIssueCheck() {
-    Axios.get(`http://3.6.171.18/bookIssue/${admissionNo}`)
+    Axios.get(`${apiurl}/bookIssue/${admissionNo}`)
       .then(response => {
         if (response.data === null) {
           alert("No Student found");

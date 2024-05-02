@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Header.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { apiurl } from '../config';
 
 function Header() {
   const [adminName, setAdminName] = useState('');
@@ -24,7 +25,7 @@ function Header() {
         throw new Error('Token not found');
       }
 
-      const response = await axios.get('http://3.6.171.18/adminName', {
+      const response = await axios.get(apiurl +'/adminName', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -42,7 +43,7 @@ function Header() {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://3.6.171.18/logout');
+      await axios.post(apiurl +'/logout');
       localStorage.removeItem('adminName'); // Remove admin name from local storage on logout
       window.location.href = '/';
     } catch (error) {

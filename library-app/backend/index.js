@@ -23,7 +23,7 @@ app.use(cors({
     credentials: true
 }));
 
-path.join(_dirname,"../build/index.html")
+// path.join(_dirname,"../build/index.html")
 
 app.use(cookieParser())
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -46,6 +46,8 @@ const verifyUser = (req,res,next) => {
 }}
 
 
+const api = express.Router();
+
 
 
 
@@ -53,7 +55,7 @@ const verifyUser = (req,res,next) => {
 // Server-Side
 
 
-app.post('/', async function(req, res) {
+api.post('/', async function(req, res) {
     const { email, password } = req.body;
     try {
         // console.log(password)
@@ -86,7 +88,7 @@ app.post('/', async function(req, res) {
         res.status(500).send('Failed to retrieve books');
     }
   });
-  app.get('/adminHome', async function(req, res) {
+  api.get('/adminHome', async function(req, res) {
     try {
         const books = await bookModel.find({});
         res.json(books);
@@ -95,7 +97,7 @@ app.post('/', async function(req, res) {
         res.status(500).send('Failed to retrieve books');
     }
 });
-  app.get('/adminName',verifyUser, async function(req, res) {
+  api.get('/adminName',verifyUser, async function(req, res) {
     try {
       const admin = await adminModel.findById(req.userId);
       console.log(admin)
@@ -109,7 +111,7 @@ app.post('/', async function(req, res) {
     }
     });
   
-  app.post('/logout', async function(req, res) {
+  api.post('/logout', async function(req, res) {
     try {
         const user = await adminModel.findOne({ loggedIn: true });
         if (user) {
@@ -128,7 +130,7 @@ app.post('/', async function(req, res) {
 //add book
 
 
-app.post('/addBook', async function (req, res) {
+api.post('/addBook', async function (req, res) {
     if (!req.body.bookName || !req.body.author || !req.body.language || !req.body.serialNo) {
         return res.status(400).send('All fields are required');
     }
@@ -151,7 +153,7 @@ app.post('/addBook', async function (req, res) {
 
 //Add Student
 
-app.post('/addStudent', async function(req, res) {
+api.post('/addStudent', async function(req, res) {
     if (!req.body.studentName || !req.body.className || !req.body.division || !req.body.admissionNo || !req.body.gender) {
         return res.status(400).send('All fields are required');
     }
@@ -175,7 +177,7 @@ app.post('/addStudent', async function(req, res) {
 
 //Search Book
 
-app.get('/searchBooks', async function(req, res) {
+api.get('/searchBooks', async function(req, res) {
     try {
         const query = req.query.query;
         // Using a case-insensitive regex to search for books by name, author, or serial number
@@ -196,7 +198,7 @@ app.get('/searchBooks', async function(req, res) {
 
 //Book details
 
-app.get('/bookDetails/:id', async function(req, res) {
+api.get('/bookDetails/:id', async function(req, res) {
     try {
         const bookId = req.params.id;
         const book = await bookModel.findById(bookId);
@@ -210,7 +212,7 @@ app.get('/bookDetails/:id', async function(req, res) {
 
 //Edit book
 
-app.get('/editBook/:id', async function(req, res) {
+api.get('/editBook/:id', async function(req, res) {
     try {
         const bookId = req.params.id;
         const book = await bookModel.findById(bookId);
@@ -221,7 +223,7 @@ app.get('/editBook/:id', async function(req, res) {
     }
 });
 
-app.post('/editBook/:id', async function(req, res) {
+api.post('/editBook/:id', async function(req, res) {
     try {
         if (!req.body.bookName || !req.body.author || !req.body.language || !req.body.serialNo) {
             return res.status(400).send('All fields are required');
@@ -246,7 +248,7 @@ app.post('/editBook/:id', async function(req, res) {
 //Delete book
 
 
-app.post('/deleteBook/:id', function(req, res) {
+api.post('/deleteBook/:id', function(req, res) {
     const bookId = req.params.id;
     bookModel.deleteOne({ _id: bookId })
       
@@ -263,7 +265,7 @@ app.post('/deleteBook/:id', function(req, res) {
 
 
 
-app.get('/bookIssue/:admissionNo', async function (req, res) {
+api.get('/bookIssue/:admissionNo', async function (req, res) {
     const admissionNo = req.params.admissionNo;
     console.log(admissionNo)
 
@@ -283,7 +285,7 @@ app.get('/bookIssue/:admissionNo', async function (req, res) {
     }
 });
 
-app.get('/bookHeader/:serialNo/:admissionNo', async function (req, res) {
+api.get('/bookHeader/:serialNo/:admissionNo', async function (req, res) {
     const serialNo = req.params.serialNo;
     const admissionNo = req.params.admissionNo;
 
@@ -324,7 +326,7 @@ app.get('/bookHeader/:serialNo/:admissionNo', async function (req, res) {
 // Return Book
 
 
-app.get('/returnBook/:serialNo/:admissionNo', async function (req, res) {
+api.get('/returnBook/:serialNo/:admissionNo', async function (req, res) {
     const serialNo = req.params.serialNo;
     const admissionNo = req.params.admissionNo;
 
@@ -375,7 +377,7 @@ app.get('/returnBook/:serialNo/:admissionNo', async function (req, res) {
 
 
 
-app.get('/bookIssue/:admissionNo', async function (req, res) {
+api.get('/bookIssue/:admissionNo', async function (req, res) {
     const admissionNo = req.params.admissionNo;
     console.log(admissionNo)
 
@@ -395,7 +397,7 @@ app.get('/bookIssue/:admissionNo', async function (req, res) {
     }
 });
 
-app.get('/bookHeader/:serialNo/:admissionNo', async function (req, res) {
+api.get('/bookHeader/:serialNo/:admissionNo', async function (req, res) {
     const serialNo = req.params.serialNo;
     const admissionNo = req.params.admissionNo;
 
@@ -430,7 +432,7 @@ app.get('/bookHeader/:serialNo/:admissionNo', async function (req, res) {
         res.status(500).send('Failed to fetch book details');
     }
 });
-app.get('/returnBook/:serialNo/:admissionNo', async function (req, res) {
+api.get('/returnBook/:serialNo/:admissionNo', async function (req, res) {
     const serialNo = req.params.serialNo;
     const admissionNo = req.params.admissionNo;
 
@@ -469,6 +471,9 @@ app.get('/returnBook/:serialNo/:admissionNo', async function (req, res) {
         res.status(500).send('Failed to return book');
     }
 });
+
+app.use("/api", api);
+app.get("*", (req, res) => res.sendFile("index.html", {root: buildpath}))
 
 const PORT=process.env.PORT || 5000
 

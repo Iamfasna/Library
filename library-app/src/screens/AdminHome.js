@@ -4,6 +4,7 @@ import BookList from '../components/BookList';
 import Pagination from '../components/Pagination';
 import Header from '../components/Header';
 import {useNavigate}  from "react-router-dom";
+import { apiurl } from '../config';
 
 
 function AdminHome() {
@@ -31,7 +32,7 @@ if (selectedBookId) {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch('http://3.6.171.18/adminHome');
+        const response = await fetch(apiurl +'/adminHome');
         const data = await response.json();
         setBooks(data);
       } catch (error) {

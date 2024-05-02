@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { apiurl } from "../config"; 
 import '../styles/Home.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +14,7 @@ function Home() {
   axios.defaults.withCredentials= true  
   const handleSubmit = (e) =>{
       e.preventDefault();
-      axios.post("http://http://3.6.171.18/", { email, password })
+      axios.post(apiurl, { email, password })
         .then(result => {
           console.log(result);
           if (result.data.success === true) {
