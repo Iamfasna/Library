@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# LIBRARY MANAGEMENT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### The Library Management System is a web application designed to facilitate efficient management of a library's resources. It provides a user-friendly interface for authorized administrators to perform various tasks related to managing books and tracking their availability.
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+### Key Features:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### 1.Authentication: Only authorized administrators can access the system, ensuring security and privacy of library data.
+#### 2.Book Management:
+#### Add, Edit, and Delete Book Details: Administrators can easily add new books to the system, edit existing book information, and remove outdated or irrelevant entries.
+#### View Book List and Details: A comprehensive list of all available books is displayed, along with detailed information such as title, author, genre, publication date, and availability status.
+#### Search Books: Administrators can quickly search for specific books using various criteria such as title, author, or genre, streamlining the process of finding and managing library resources.
+#### 3.Issue/Receive Book:
+Administrators can manage the borrowing and returning of books by library members. They can issue books to users and receive them back when returned.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Technologies Used:
 
-### `npm test`
+#### Frontend: React.js
+#### Backend: Node.js, Express.js
+#### Database: MongoDB (or any other preferred database management system)
+#### Authentication: JSON Web Tokens (JWT) for secure authentication and authorization.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## User Interfaces
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## HOME PAGE
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+![Screenshot 2024-05-09 142036](https://github.com/AparnaVjn/library/assets/149356560/1763b325-d1cd-41ae-a163-3fecbaca339d)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ADMIN HOME PAGE
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Screenshot 2024-05-09 142121](https://github.com/AparnaVjn/library/assets/149356560/c8dc3a18-d99c-4940-b09b-6999bd019e21)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## BOOK DETAILS
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+![Screenshot 2024-05-09 142242](https://github.com/AparnaVjn/library/assets/149356560/6fc18aa0-76b5-43df-bd06-f6d745744f45)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## BOOK SEARCH
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+![Screenshot 2024-05-09 142144](https://github.com/AparnaVjn/library/assets/149356560/0c8ecd1d-422f-41ac-aa28-b84b14b0cd78)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## ADD BOOK DETAILS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+![Screenshot 2024-05-09 142217](https://github.com/AparnaVjn/library/assets/149356560/75389671-425f-4472-a3bd-cbf5242f59bf)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+## ADD STUDENT DETAILS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+![Screenshot 2024-05-09 142418](https://github.com/AparnaVjn/library/assets/149356560/2b424d4c-0bdf-42f0-839c-b4a36b10d255)
+
+
+
+## BOOK ISSUE/RECEIVE 
+
+#### Administrators can manage the borrowing and returning of books by library members. They can issue books to users and receive them back when returned.
+Also student details can be view in this page
+
+
+
+![Screenshot 2024-05-09 142348](https://github.com/AparnaVjn/library/assets/149356560/fd0137c1-0c4e-4880-85e9-caf5ca97bd03)
+
+
+![Screenshot 2024-05-09 142615](https://github.com/AparnaVjn/library/assets/149356560/690f4515-8aee-49bb-a0c9-f9560464be40)
+
+
+
+
+
